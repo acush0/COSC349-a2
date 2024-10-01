@@ -34,11 +34,11 @@ function App() {
 
   const fetchTasks = async (flatID) => {
     try {
-      const response = await axios.get(`http://localhost:8080/tasks/flatID/${flatID}`);
+      const response = await axios.get(`http://backend.myapp.local:8080/tasks/flatID/${flatID}`);
       const tasksWithUsers = await Promise.all(response.data.map(async task => {
-        const assignedUsersResponse = await axios.get(`http://localhost:8080/assigned/task/${task.taskID}`);
+        const assignedUsersResponse = await axios.get(`http://backend.myapp.local:8080/assigned/task/${task.taskID}`);
         const assignedUsersDetails = await Promise.all(assignedUsersResponse.data.map(async assignment => {
-          const userResponse = await axios.get(`http://localhost:8080/user/${assignment.userID}`);
+          const userResponse = await axios.get(`http://backend.myapp.local:8080/user/${assignment.userID}`);
           return `${userResponse.data.firstName}`;
         }));
         return { ...task, assignedUsers: assignedUsersDetails.join(', ') };
@@ -85,7 +85,7 @@ function RouterComponent({ user, setUser, flat, setFlat, tasks, setTasks, onFetc
       navigate('/joinFlat');
     } else {
       try {
-        const response = await axios.get(`http://localhost:8080/flat/${userData.flatID}`);
+        const response = await axios.get(`http://backend.myapp.local:8080/flat/${userData.flatID}`);
         setFlat(response.data);
         localStorage.setItem('flat', JSON.stringify(response.data));
         await onFetchTasks(userData.flatID);

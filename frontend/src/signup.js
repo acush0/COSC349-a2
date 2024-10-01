@@ -19,7 +19,7 @@ const SignUp = ({ onSignUpSuccess }) => {
 
 
     try {
-      const response = await axios.post('http://localhost:8080/user/signup', {
+      const response = await axios.post('http://backend.myapp.local:8080/user/signup', {
         userID: null,
         username,
         firstName,

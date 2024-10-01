@@ -12,7 +12,7 @@ const LoginSuccess = ({ user }) => {
     if (user && user.userID) {
       const fetchUserData = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/user/${user.userID}`);
+          const response = await axios.get(`http://backend.myapp.local:8080/user/${user.userID}`);
           setUserData(response.data);
 
           await fetchTasks(user.userID);  // Fetch tasks here
@@ -23,7 +23,7 @@ const LoginSuccess = ({ user }) => {
 
       const fetchPaymentData = async () => {
         try {
-          const response = await axios.get(`http://localhost:8080/payments/userID/${user.userID}`);
+          const response = await axios.get(`http://backend.myapp.local:8080/payments/userID/${user.userID}`);
           const updatedPayments = await Promise.all(response.data.map(async (payment) => {
             const userDetail = await fetchUserDetails(payment.userID);
             if (userDetail) {
@@ -40,7 +40,7 @@ const LoginSuccess = ({ user }) => {
 
       const fetchUserDetails = async (userID) => {
         try {
-          const response = await axios.get(`http://localhost:8080/user/${userID}`);
+          const response = await axios.get(`http://backend.myapp.local:8080/user/${userID}`);
           return response.data;
         } catch (error) {
           console.error("Error fetching user details:", error);
@@ -61,7 +61,7 @@ const LoginSuccess = ({ user }) => {
 
   const fetchTasks = async (userID) => {
     try {
-      const tasksResponse = await axios.get(`http://localhost:8080/tasks/userID/${userID}`);
+      const tasksResponse = await axios.get(`http://backend.myapp.local:8080/tasks/userID/${userID}`);
       const temp = tasksResponse.data
         .filter(task => !task.completed)  // Filter out completed tasks
         .map((task) => (
@@ -83,7 +83,7 @@ const LoginSuccess = ({ user }) => {
 
   const handleCheckboxChange = async (paymentID, currentStatus) => {
     try {
-      await axios.put(`http://localhost:8080/payments/${paymentID}`, !currentStatus, {
+      await axios.put(`http://backend.myapp.local:8080/payments/${paymentID}`, !currentStatus, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -100,14 +100,14 @@ const LoginSuccess = ({ user }) => {
   const handleTaskCheckboxChange = async (taskID, currentStatus) => {
     try {
       // Fetch the current task details
-      const taskResponse = await axios.get(`http://localhost:8080/tasks/${taskID}`);
+      const taskResponse = await axios.get(`http://backend.myapp.local:8080/tasks/${taskID}`);
       const task = taskResponse.data;
   
       // Update the completed status
       const updatedTask = { ...task, completed: !currentStatus };
   
       // Send the PUT request with the updated task object
-      await axios.put(`http://localhost:8080/tasks/${taskID}`, updatedTask, {
+      await axios.put(`http://backend.myapp.local:8080/tasks/${taskID}`, updatedTask, {
         headers: {
           'Content-Type': 'application/json'
         }

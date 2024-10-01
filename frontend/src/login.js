@@ -10,7 +10,7 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/user/login', {
+      const response = await axios.post('http://backend.myapp.local:8080/user/login', {
         username,
         password
       });

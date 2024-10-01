@@ -13,7 +13,7 @@ const Payment = ({ flatData, user }) => {
     useEffect(() => {
         const dataRes = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/flatUsers/${flatData.flatID}`);
+                const response = await axios.get(`http://backend.myapp.local:8080/flatUsers/${flatData.flatID}`);
                 setPeople(response.data);
                 const temp = response.data.map((person, i) => (
                     <option key={i} value={i}>
@@ -56,7 +56,7 @@ const Payment = ({ flatData, user }) => {
     const handleCreatePayment = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://localhost:8080/payments');
+            const response = await axios.get('http://backend.myapp.local:8080/payments');
             console.log(response.data)
         } catch (error) {
             console.log(error)
@@ -64,7 +64,7 @@ const Payment = ({ flatData, user }) => {
         try {
             console.log(description)
             for (const person of selected) {
-                const response = await axios.post('http://localhost:8080/payments', {
+                const response = await axios.post('http://backend.myapp.local:8080/payments', {
                     paymentID: null,
                     userID: person.userID,
                     amount,

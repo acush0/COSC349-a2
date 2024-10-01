@@ -10,7 +10,7 @@ const CreateFlat = ({ onCreateSuccess,userData }) => {
         e.preventDefault();
         try {
             const userID = userData.userID;
-            const response = await axios.post('http://localhost:8080/flat/create', {
+            const response = await axios.post('http://backend.myapp.local:8080/flat/create', {
                 flatID:null,
                 address,
                 host:userID,
