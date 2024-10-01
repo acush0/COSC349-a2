@@ -9,7 +9,7 @@ public class JdbiDaoFactory{
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "example";
 
-    private static String jdbcUri = "jdbc:mysql://db:3306/example";
+    private static String jdbcUri = "jdbc:mysql://database-2.cilyigpmpbiz.us-east-1.rds.amazonaws.com/example";
 
     private static HikariDataSource HIKARI_DATA_SOURCE;
     private static Jdbi JDBI;
