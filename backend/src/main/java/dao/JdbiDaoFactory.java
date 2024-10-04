@@ -6,10 +6,11 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 public class JdbiDaoFactory{
 
-    private static final String DB_USERNAME = "root";
-    private static final String DB_PASSWORD = "example";
+    private static final String DB_USERNAME = "admin";
+    private static final String DB_PASSWORD = "Assign1";
+    private static final String publicIp = "database-2.cgdcdtm3ccfe.us-east-1.rds.amazonaws.com";
 
-    private static String jdbcUri = "jdbc:mysql://database-2.cilyigpmpbiz.us-east-1.rds.amazonaws.com/example";
+    private static String jdbcUri = "jdbc:mysql://"+publicIp+"/example";
 
     private static HikariDataSource HIKARI_DATA_SOURCE;
     private static Jdbi JDBI;
