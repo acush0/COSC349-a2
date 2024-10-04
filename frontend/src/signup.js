@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import endpoint from './key';
 
 const SignUp = ({ onSignUpSuccess }) => {
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ const SignUp = ({ onSignUpSuccess }) => {
 
 
     try {
-      const response = await axios.post('http://${endpoint}:8080/user/signup', {
+      const response = await axios.post(`http://${endpoint}:8080/user/signup`, {
         userID: null,
         username,
         firstName,

@@ -1,6 +1,7 @@
 // navbar.js
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import endpoint from './key';
 
 function Navbar({ user, onLogout, onShowCalendar }) {
   const navigate = useNavigate();

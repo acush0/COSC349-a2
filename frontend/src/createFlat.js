@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import endpoint from './key';
 
 const CreateFlat = ({ onCreateSuccess,userData }) => {
     const [address, setAddress] = useState('');
@@ -10,7 +11,7 @@ const CreateFlat = ({ onCreateSuccess,userData }) => {
         e.preventDefault();
         try {
             const userID = userData.userID;
-            const response = await axios.post('http://${endpoint}:8080/flat/create', {
+            const response = await axios.post(`http://${endpoint}:8080/flat/create`, {
                 flatID:null,
                 address,
                 host:userID,

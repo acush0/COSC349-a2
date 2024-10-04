@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import endpoint from './key';
+
 
 const JoinFlat = ({createFlat,joinFlat,userData}) => {
   const [flatID,setFlatID] = useState('');
@@ -8,10 +10,10 @@ const JoinFlat = ({createFlat,joinFlat,userData}) => {
   const handleJoin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get('http://${endpoint}:8080/flat/'+flatID);
+      const response = await axios.get(`http://${endpoint}:8080/flat/`+flatID);
       if (response.data) {
       const userID = userData.userID;
-        await axios.put('http://${endpoint}:8080/user/'+userID,{
+        await axios.put(`http://${endpoint}:8080/user/`+userID,{
             userID,
             flatID
         });

@@ -1,6 +1,7 @@
 // payments.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import endpoint from './key';
 
 const Payment = ({ flatData, user }) => {
     const [options, setOptions] = useState([]);
@@ -56,7 +57,7 @@ const Payment = ({ flatData, user }) => {
     const handleCreatePayment = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://${endpoint}:8080/payments');
+            const response = await axios.get(`http://${endpoint}:8080/payments`);
             console.log(response.data)
         } catch (error) {
             console.log(error)
@@ -64,7 +65,7 @@ const Payment = ({ flatData, user }) => {
         try {
             console.log(description)
             for (const person of selected) {
-                const response = await axios.post('http://${endpoint}:8080/payments', {
+                const response = await axios.post(`http://${endpoint}:8080/payments`, {
                     paymentID: null,
                     userID: person.userID,
                     amount,

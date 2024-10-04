@@ -1,6 +1,6 @@
 // login.js
 import React, { useState } from 'react';
-import endpoint from 'key.js';
+import endpoint from './key';
 import axios from 'axios';
 
 const Login = ({ onLoginSuccess }) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import endpoint from './key';
 
 const Tasks = ({ flatData }) => {
     const [options, setOptions] = useState([]);
@@ -13,7 +14,7 @@ const Tasks = ({ flatData }) => {
     useEffect(() => {
         const dataRes = async () => {
             try {
-                const response = await axios.get('http://${endpoint}:8080/flatUsers/' + flatData.flatID);
+                const response = await axios.get(`http://${endpoint}:8080/flatUsers/` + flatData.flatID);
                 console.log(response.data);
                 setPeople(response.data);
                 const temp = response.data.map((person, i) => (
@@ -59,7 +60,7 @@ const Tasks = ({ flatData }) => {
     const handleCreateTask = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://${endpoint}:8080/tasks', {
+            const response = await axios.post(`http://${endpoint}:8080/tasks`, {
                 taskID: null,
                 taskName,
                 description,
@@ -70,7 +71,7 @@ const Tasks = ({ flatData }) => {
             if (response.status === 201) {
                 for (const index of selected) {
                     const person = people[index];
-                    await axios.post('http://${endpoint}:8080/assigned', {
+                    await axios.post(`http://${endpoint}:8080/assigned`, {
                         taskID: response.data.taskID,
                         userID: person.userID
                     });
@@ -81,7 +82,7 @@ const Tasks = ({ flatData }) => {
                 setRequestedDate('');
                 setSelected([]);
                 // Optionally, refetch people to reset options
-                const peopleResponse = await axios.get('http://${endpoint}:8080/flatUsers/' + flatData.flatID);
+                const peopleResponse = await axios.get(`http://${endpoint}:8080/flatUsers/` + flatData.flatID);
                 setPeople(peopleResponse.data);
                 const temp = peopleResponse.data.map((person, i) => (
                     <option key={i} value={i}>
