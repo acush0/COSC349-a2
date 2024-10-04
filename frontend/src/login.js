@@ -1,5 +1,6 @@
 // login.js
 import React, { useState } from 'react';
+import endpoint from 'key.js';
 import axios from 'axios';
 
 const Login = ({ onLoginSuccess }) => {
@@ -10,7 +11,7 @@ const Login = ({ onLoginSuccess }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://backend.myapp.local:8080/user/login', {
+      const response = await axios.post(`http://${endpoint}:8080/user/login`, {
         username,
         password
       });

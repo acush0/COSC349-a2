@@ -28,7 +28,7 @@ public interface UserJbdiDAO extends UserDAO {
     void removeUser(@Bind("userID") String userID);
 
     @Override
-    @SqlQuery("select exists(select * from Users where username = :user and password = :pass)")
+    @SqlQuery("select exists(select * from users where username = :user and password = :pass)")
     boolean checkCredentials(@Bind("user") String username, @Bind("pass") String password);
 
     @Override
