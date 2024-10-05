@@ -1,3 +1,3 @@
 // key.js
-const endpoint = "3.81.108.238";
+const endpoint = "34.201.162.173";
 export default endpoint;

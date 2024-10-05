@@ -32,7 +32,7 @@ public interface TaskJdbiDAO extends TaskDAO{
     void setCompleteTask(@Bind("taskID") String taskID,@Bind("completed") Boolean completed);
 
     @Override
-    @SqlUpdate("INSERT INTO task (taskID, taskName, Description, FlatID, RequestedDate, completed) values (:taskID,:taskName, :description, :flatID, :requestedDate, :completed)")
+    @SqlUpdate("INSERT INTO task (taskID, taskName, description, flatID, requestedDate, completed) values (:taskID,:taskName, :description, :flatID, :requestedDate, :completed)")
     void createTask(@BindBean Task task);
 
     @Override
@@ -58,7 +58,7 @@ public interface TaskJdbiDAO extends TaskDAO{
     Collection<Task> getTaskByFlat(@BindBean Flat flat);
 
     @Override
-    @SqlQuery("SELECT Task.TASKID,TASKNAME,DESCRIPTION,FLATID,COMPLETED,REQUESTEDDATE FROM Task " +
+    @SqlQuery("SELECT task.taskid,taskname,description,flatid,completed,requestedDate FROM task " +
             "inner join assigned on task.taskId = assigned.taskid " +
             "where userid = :userID")
     @RegisterBeanMapper(Task.class)
