@@ -28,7 +28,7 @@
   - **Set to Free Tier.**
   - Under **Connectivity**, set **Public Access** to `Yes`.
   - Take note of the generated password.
-  - **Add the Security Groups created in Step 1.**
+  - **Add the Security Group(allow_sql) created in Step 1.**
   - After creation, take note of the RDS endpoint.
 
 ## 3. Pull the Repository
