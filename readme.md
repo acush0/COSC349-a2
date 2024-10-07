@@ -26,16 +26,11 @@ This web application helps student flats stay organized, manage tasks, and handl
 
 1. Clone the repository:
    ```
-   git clone https://github.com/haydenaish/COSC349-a1.git
-   cd COSC349-a1
+   git clone https://github.com/acush0/COSC349-a2.git
    ```
 
-2. Start the application:
-   ```
-   docker compose up --build
-   ```
+2. Follow steps in setupSteps.md
 
-3. Access the application at `http://localhost:3000`
 
 ## Project Structure
 
@@ -44,8 +39,8 @@ COSC349-A1/
 ├── frontend/           # React frontend
 ├── backend/            # Java backend
 ├── db-init/            # MySQL database seeders and tables
-├── my.cnf              # database configuration  
-├── docker-compose.yml  # Docker Compose configuration
+├── buildBackend.sh     # Bash script for publishing backend container to AWS ECR  
+├── buildFrontend.sh    # Bash script for publishing frontend container to AWS ECR 
 └── README.md           # This file
 ```
 
@@ -53,25 +48,24 @@ COSC349-A1/
 
 ### Making Changes to the Frontend
 
-1. Navigate to the `frontend` directory
-2. Make your changes
-3. Rebuild and restart the frontend container:
+1. Make your changes
+2. Rebuild and publish the frontend container:
    ```
-   docker compose down frontend
-   docker compose build frontend
-   docker compose up frontend
+   ./buildFrontend.sh <aws_userId> <ecr_repo_name> <region>  
    ```
+3. Restart frontend task on AWS
 
 ### Making Changes to the Backend
 
-1. Navigate to the `backend` directory
-2. Make your changes
-3. Rebuild and restart the backend container:
+1. Make your changes
+2. Rebuild and publish the backend container:
    ```
-   docker compose down backend
-   docker compose build backend
-   docker compose up backend
+   ./buildBackend.sh <aws_userId> <ecr_repo_name> <region>  
    ```
+3. Restart backend task on AWS
+4. Change IP in fronted/src/keys.js to match new public backend IP
+5. Follow steps under "making changes to frontend"
+
 
 ## API Documentation
 
