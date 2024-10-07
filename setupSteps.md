@@ -14,7 +14,7 @@
       - Source: `0.0.0.0/0` (To allow public access)
     - **Outbound Rule:**
       - Destination: Anywhere
-  - **Create a Final Security Group:**
+  - **Create a Final Security Group(frontend):**
     - **Inbound Rule:**
       - Type: Custom TCP
       - Port Range: `3000`
@@ -39,7 +39,7 @@
 - In the backend:
 - Open src/main/java/dao/JdbiDaoFactory.java.
 - Change the username and password (lines 9 and 10) to admin and the password you previously created.
-- Change the jdbcUri (line 12) to the RDS endpoint.
+- Change the publicIp (line 11) to the RDS endpoint.
 ## 5. Install MySQL
 - Install MySQL version 8.4 if not already installed.
 - From a terminal, connect to the RDS:
