@@ -59,12 +59,12 @@ nano ~/.aws/credentials
 ## 7. Authenticate Docker with ECR
 - Run the following command to authenticate:
 ```bash
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <userId>.dkr.ecr.us-east-1.amazonaws.com
+aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <userId>.dkr.ecr.<region>.amazonaws.com
 ```
 ## 8. Create ECR Repository
 Create an ECR repository to store Docker images:
 ```bash
-aws ecr create-repository --repository-name <repo_name> --region us-east-1
+aws ecr create-repository --repository-name <repo_name> --region <region>
 ```
 - Take note of the repo_name chosen.
 ## 9. Create Backend Image
